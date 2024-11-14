@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FiTrash2 } from "react-icons/fi"; // Importing trash icon
+import { FiTrash2 } from "react-icons/fi";
 
 export default function Cart({
   cartItems = [],
@@ -20,12 +20,8 @@ export default function Cart({
     updateQuantity(id, 1);
   };
 
-  const handleDecrease = (id, quantity) => {
-    if (quantity < 1) {
-      updateQuantity(id, -1);
-    } else {
-      removeFromCart(id);
-    }
+  const handleDecrease = (id) => {
+    updateQuantity(id, -1);
   };
 
   return (
@@ -66,8 +62,9 @@ export default function Cart({
 
                     {/* Decrease Button */}
                     <button
-                      onClick={() => handleDecrease(item.id, item.quantity)}
+                      onClick={() => handleDecrease(item.id)}
                       className="text-gray-600 hover:text-gray-800 font-bold text-xl w-8 h-8 flex justify-center items-center"
+                      disabled={item.quantity < 2}
                     >
                       -
                     </button>
