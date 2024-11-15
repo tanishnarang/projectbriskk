@@ -1,15 +1,25 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function Navbar({ onSearch, cartItemCount = 9 }) {
+export default function Navbar({ onSearch }) {
   const [searchItem, setSearchItem] = useState("");
 
   const handleSearch = (e) => {
-    e.preventDefault();
     if (searchItem.trim().length) {
       onSearch(searchItem.trim());
     }
     setSearchItem("");
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      if (searchItem.length > 0) {
+        event.preventDefault(); // Prevent form submission only if there is text
+        handleSearch(); // Call search function
+      } else {
+        event.preventDefault(); // Prevent page reload on empty input
+      }
+    }
   };
   return (
     <div className="container max-w-full flex items-center justify-between py-4 px-6 bg-white shadow-md">
@@ -24,6 +34,7 @@ export default function Navbar({ onSearch, cartItemCount = 9 }) {
             type="text"
             value={searchItem}
             onChange={(e) => setSearchItem(e.target.value)}
+            onKeyDown={handleKeyPress}
             placeholder="Search products..."
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-800"
           />
@@ -38,11 +49,6 @@ export default function Navbar({ onSearch, cartItemCount = 9 }) {
       </div>
       <div className="flex flex-row">
         <Link to="/cart">
-          {cartItemCount > 0 && (
-            <div className="cartCounter px-2 text-purple-600 border rounded-full">
-              {cartItemCount <= 9 ? cartItemCount : "9+"}
-            </div>
-          )}
           <img className="w-8 h-8" src="/cart.svg" alt="cart" />
         </Link>
       </div>
