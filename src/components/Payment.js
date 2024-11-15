@@ -7,7 +7,7 @@ export default function PaymentPage() {
         <p>
           Return to{" "}
           <Link to="/cart" className="hover:underline text-purple-600">
-            Home Page
+            cart
           </Link>
         </p>
       </div>
