@@ -16,7 +16,7 @@ export default function App() {
     navigate(`/?${createSearchParams({ q: searchItem })}`);
   };
 
-  const [products, setProducts] = useState([]);
+  const products = [];
 
   const [cart, setCart] = useState([]);
 

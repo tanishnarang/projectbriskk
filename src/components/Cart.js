@@ -30,14 +30,14 @@ export default function Cart({
 
       {cartItems.length > 0 ? (
         <div>
-          <ul className="mb-6">
+          <ul className="mb-6 space-y-4">
             {cartItems.map((item) => (
               <li
                 key={item.id}
-                className="flex justify-between items-center p-4 border-b border-gray-200"
+                className="flex flex-col sm:flex-row justify-between items-center p-4 border-b border-gray-200"
               >
                 {/* Product Image and Name */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 w-full sm:w-auto">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -46,8 +46,8 @@ export default function Cart({
                   <span className="text-lg font-medium">{item.title}</span>
                 </div>
 
-                {/* Price, Quantity and Delete Button */}
-                <div className="flex items-center gap-20">
+                {/* Price, Quantity, and Delete Button */}
+                <div className="flex items-center gap-6 sm:gap-20 justify-between w-full sm:w-auto mt-4 sm:mt-0">
                   <div className="flex items-center justify-center gap-2 border px-3 rounded-md">
                     {/* Increase Button */}
                     <button
@@ -64,7 +64,7 @@ export default function Cart({
                     <button
                       onClick={() => handleDecrease(item.id)}
                       className="text-gray-600 hover:text-gray-800 font-bold text-xl w-8 h-8 flex justify-center items-center"
-                      disabled={item.quantity < 2}
+                      disabled={item.quantity <= 1}
                     >
                       -
                     </button>

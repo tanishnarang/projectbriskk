@@ -14,21 +14,25 @@ export default function Navbar({ onSearch }) {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       if (searchItem.length > 0) {
-        event.preventDefault(); // Prevent form submission only if there is text
-        handleSearch(); // Call search function
+        event.preventDefault();
+        handleSearch();
       } else {
-        event.preventDefault(); // Prevent page reload on empty input
+        event.preventDefault();
       }
     }
   };
+
   return (
     <div className="container max-w-full flex items-center justify-between py-4 px-6 bg-white shadow-md">
-      <div>
+      {/* Logo Section */}
+      <div className="flex-shrink-0">
         <Link to="/" className="text-2xl font-bold text-purple-600">
           Grab it.
         </Link>
       </div>
-      <div className="w-full max-w-md">
+
+      {/* Search Section */}
+      <div className="flex-grow sm:max-w-md ml-4">
         <form className="flex items-center space-x-2">
           <input
             type="text"
@@ -47,7 +51,9 @@ export default function Navbar({ onSearch }) {
           </button>
         </form>
       </div>
-      <div className="flex flex-row">
+
+      {/* Cart Icon Section */}
+      <div className="flex-shrink-0 ml-4">
         <Link to="/cart">
           <img className="w-8 h-8" src="/cart.svg" alt="cart" />
         </Link>
