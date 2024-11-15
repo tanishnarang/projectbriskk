@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FiTrash2 } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export default function Cart({
   cartItems = [],
@@ -95,9 +96,11 @@ export default function Cart({
           </div>
 
           {/* Checkout Button */}
-          <button className="w-full mt-6 px-4 py-2 bg-purple-500 text-white font-semibold rounded-md hover:bg-purple-700 transition-colors">
-            Proceed to Checkout
-          </button>
+          <Link to={"/payment"}>
+            <button className="w-full mt-6 px-4 py-2 bg-purple-500 text-white font-semibold rounded-md hover:bg-purple-700 transition-colors">
+              Proceed to Checkout
+            </button>
+          </Link>
         </div>
       ) : (
         <p className="text-lg text-center text-gray-500">Your cart is empty.</p>
