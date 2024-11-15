@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function Navbar({ onSearch }) {
+export default function Navbar({ onSearch, cartCount }) {
   const [searchItem, setSearchItem] = useState("");
 
   const handleSearch = (e) => {
@@ -53,9 +53,12 @@ export default function Navbar({ onSearch }) {
       </div>
 
       {/* Cart Icon Section */}
-      <div className="flex-shrink-0 ml-4">
-        <Link to="/cart">
-          <img className="w-8 h-8" src="/cart.svg" alt="cart" />
+      <div className="relative flex-shrink-0 ml-4">
+        <p className=" absolute -right-2 -top-2 p-0 text-semibold text-white border rounded-full bg-purple-600 text-xs w-5 h-5 flex justify-center align-center">
+          {cartCount}
+        </p>
+        <Link to="/cart" className="pt-0">
+          <img className="w-10 h-10 pt-0" src="/cart.svg" alt="cart" />
         </Link>
       </div>
     </div>

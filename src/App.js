@@ -8,7 +8,8 @@ import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 import ProductDetail from "./components/ProductDetails";
 import Navbar from "./components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import PaymentPage from "./components/Payment";
 
 export default function App() {
   const navigate = useNavigate();
@@ -19,6 +20,12 @@ export default function App() {
   const products = [];
 
   const [cart, setCart] = useState([]);
+
+  const [cartCount, setCartCount] = useState(cart.length);
+
+  useEffect(() => {
+    setCartCount(cart.length);
+  }, [cart]);
 
   const onAddToCart = (product) => {
     const existingProduct = cart.find((item) => item.id === product.id);
@@ -49,7 +56,10 @@ export default function App() {
 
   return (
     <div>
-      <Navbar onSearch={onSearch} />
+      <Navbar
+        onSearch={onSearch}
+        cartCount={cartCount < 9 ? cartCount : "9+"}
+      />
 
       <Routes>
         <Route
@@ -74,6 +84,7 @@ export default function App() {
             />
           }
         />
+        <Route path="/payment" element={<PaymentPage />} />
       </Routes>
     </div>
   );
