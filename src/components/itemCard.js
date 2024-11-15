@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function ItemCard({ data, handleAddToCart }) {
   const { id, image, brand, title, price } = data;
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
+    <div className="bg-white rounded-lg shadow-md p-4 hover:shadow-purple-400 transition-shadow duration-300">
       <div className="image mb-4">
         <img
           src={image}
@@ -22,7 +22,7 @@ export default function ItemCard({ data, handleAddToCart }) {
       <div className="flex items-center justify-between mt-4">
         <span className="text-xl text-black-600">${price}</span>
         <button
-          className="px-4 py-2 text-sm font-medium text-white bg-purple-500 rounded-md hover:bg-purple-700 transition-colors"
+          className="px-4 py-2 text-sm font-medium text-white bg-purple-700 rounded-md hover:bg-purple-800 transition-colors"
           onClick={handleAddToCart}
         >
           Add To Cart

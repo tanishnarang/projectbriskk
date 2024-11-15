@@ -1,4 +1,9 @@
-import { Routes, Route } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  createSearchParams,
+} from "react-router-dom";
 import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 import ProductDetail from "./components/ProductDetails";
@@ -6,6 +11,11 @@ import Navbar from "./components/Navbar";
 import { useState } from "react";
 
 export default function App() {
+  const navigate = useNavigate();
+  const onSearch = (searchItem) => {
+    navigate(`/?${createSearchParams({ q: searchItem })}`);
+  };
+
   const products = [
     {
       id: 1,
@@ -67,7 +77,7 @@ export default function App() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar onSearch={onSearch} />
 
       <Routes>
         <Route
