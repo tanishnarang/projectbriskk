@@ -16,35 +16,7 @@ export default function App() {
     navigate(`/?${createSearchParams({ q: searchItem })}`);
   };
 
-  const products = [
-    {
-      id: 1,
-      image: "images/airforce1.png",
-      title: "AirForce1",
-      brand: "Nike",
-      price: 200,
-      description: "Great quality of shoe with a nike brand logo on sides",
-      review: "Great quality",
-    },
-    {
-      id: 2,
-      title: "AirForce2",
-      image: "images/airforce2.png",
-      brand: "Nike",
-      price: 250,
-      description: "Great quality of shoe with a nike brand logo on sides",
-      review: "Best quality",
-    },
-    {
-      id: 3,
-      title: "AirForce3",
-      image: "images/airforce3.jpg",
-      brand: "Nike",
-      price: 300,
-      description: "Great quality of shoe with a nike brand logo on sides",
-      review: "Over Priced",
-    },
-  ];
+  const [products, setProducts] = useState([]);
 
   const [cart, setCart] = useState([]);
 
