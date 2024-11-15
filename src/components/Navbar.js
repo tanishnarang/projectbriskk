@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function Navbar({ onSearch }) {
+export default function Navbar({ onSearch, cartItemCount = 9 }) {
   const [searchItem, setSearchItem] = useState("");
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault();
     if (searchItem.trim().length) {
       onSearch(searchItem.trim());
     }
@@ -14,7 +15,7 @@ export default function Navbar({ onSearch }) {
     <div className="container max-w-full flex items-center justify-between py-4 px-6 bg-white shadow-md">
       <div>
         <Link to="/" className="text-2xl font-bold text-purple-600">
-          Grab Sneakers
+          Grab it.
         </Link>
       </div>
       <div className="w-full max-w-md">
@@ -35,8 +36,13 @@ export default function Navbar({ onSearch }) {
           </button>
         </form>
       </div>
-      <div>
+      <div className="flex flex-row">
         <Link to="/cart">
+          {cartItemCount > 0 && (
+            <div className="cartCounter px-2 text-purple-600 border rounded-full">
+              {cartItemCount <= 9 ? cartItemCount : "9+"}
+            </div>
+          )}
           <img className="w-8 h-8" src="/cart.svg" alt="cart" />
         </Link>
       </div>
